@@ -1,0 +1,7 @@
+flask==3.0.3
+python-telegram-bot==21.6
+playwright==1.47.0
+requests==2.32.3
+pyzipper==0.3.6
+supabase==2.9.1
+gunicorn==22.0.0
