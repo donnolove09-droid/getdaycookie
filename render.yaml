@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: cheatgameos
+    runtime: python
+    plan: starter
+    buildCommand: |
+      pip install -r requirements.txt
+      playwright install chromium
+      playwright install-deps chromium
+    startCommand: gunicorn -b 0.0.0.0:$PORT -w 1 --threads 4 --timeout 300 app:app
+    envVars:
+      - key: TOKEN_TELEGRAM
+        sync: false
+      - key: TEN_BOT_TELEGRAM
+        value: CheatGameOS Bot
+      - key: USERNAME_BOT_TELEGRAM
+        sync: false
+      - key: ALLOWED_USERNAMES
+        sync: false
+
+      - key: SECRET_KEY
+        generateValue: true
+
+      - key: WEB_URL
+        sync: false
+      - key: RUN_BOT_WITH_WEB
+        value: "true"
+      - key: KEYS_FILE
+        value: keys.txt
+
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+
+      - key: ZIP_PASSWORD
+        value: cheatgame
+      - key: DOWNLOAD_TOKEN_TTL
+        value: "300"
+      - key: PLAYWRIGHT_HEADLESS
+        value: "true"
+
+      - key: DEFAULT_PROXY
+        sync: false
+
+      - key: ENABLE_FACEBOOK
+        value: "true"
+      - key: ENABLE_TIKTOK
+        value: "true"
+      - key: ENABLE_INSTAGRAM
+        value: "true"
+
+      - key: RATE_LIMIT_PER_DAY
+        value: "5"
